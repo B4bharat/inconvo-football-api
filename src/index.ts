@@ -26,21 +26,11 @@ app.post('/teams', async (req, res) => {
 		},
 	};
 
-	// const INTERNAL_SERVER_ERROR = 500;
-
 	const response = await createNewTeam(httpRequest);
 
 	console.log('response', response);
 	res.type('json');
 	res.send('post');
-	// .then((httpResponse) => {
-	// 	if (httpResponse.headers) {
-	// 		res.set(httpResponse.headers);
-	// 	}
-	// 	res.type('json');
-	// 	res.status(httpResponse.statusCode).send(httpResponse.body);
-	// })
-	// .catch((e: Error) => res.status(INTERNAL_SERVER_ERROR).send({ error: e }));
 });
 
 // listen for requests
