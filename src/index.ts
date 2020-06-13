@@ -30,7 +30,7 @@ app.post('/teams', async (req, res) => {
 
 	console.log('response', response);
 	res.type('json');
-	res.send('post');
+	res.send(response);
 });
 
 // listen for requests

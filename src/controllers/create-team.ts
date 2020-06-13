@@ -2,16 +2,12 @@ export default function makeCreateNewTeam({ createTeam }) {
 	return async function createNewTeam(httpRequest) {
 		try {
 			console.log('createNewTeam controller');
-			const posted = await createTeam(httpRequest.body);
+			const teamDetails = httpRequest.body;
 
-			console.log('posted', posted);
+			await createTeam(teamDetails);
 
 			return {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				statusCode: 201,
-				body: { posted },
+				teamDetails,
 			};
 		} catch (e) {
 			// TODO: Error logging

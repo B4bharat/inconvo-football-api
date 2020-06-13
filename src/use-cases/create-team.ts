@@ -7,12 +7,6 @@ export default function makeCreateTeam({
 	writeToFile,
 	updateExisting,
 }) {
-	/**
-   * makeNewTeam factory function
-      Dependency injection ( DB, ‘image url check’)
-      DB.insert should merely push a new value to the json store
-   */
-
 	interface TeamDetails {
 		name: string;
 		img: string;
@@ -52,7 +46,7 @@ export default function makeCreateTeam({
 
 			const updateResponse = await updateExisting(existingTeam);
 
-			console.log('updateResponse', updateResponse);
+			return updateResponse;
 		} else {
 			console.log('makeNewTeam usecase');
 			const newTeamDetails = makeTeam(teamDetails);
@@ -62,7 +56,7 @@ export default function makeCreateTeam({
 			// TODO: Push 'newTeamDetails' to the json file
 			const fileWriteResponse = await writeToFile(teamDetails);
 
-			console.log('fileWriteResponse', fileWriteResponse);
+			return fileWriteResponse;
 		}
 	};
 }

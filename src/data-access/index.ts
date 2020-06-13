@@ -1,13 +1,9 @@
 /**
  * IN THE SCENARIO OF DATABASE CONNECTION, IT WILL BE DB CONNECTION SCRIPT HERE
  */
-import fs from 'fs';
-import path from 'path';
-import util from 'util';
+import { promises as fsPromises } from 'fs';
 
-// Convert readFile, writeFile into Promise version of the same
-const readFile = util.promisify(fs.readFile);
-const writeFile = util.promisify(fs.writeFile);
+import path from 'path';
 
 // TODO: File path name should be generic
 const pathToFile = path.join(__dirname, '../data/footballTeams.json');
@@ -18,7 +14,7 @@ interface TeamDetails {
 }
 
 async function readDataFile() {
-	const fileData = await readFile(pathToFile, 'utf8');
+	const fileData = await fsPromises.readFile(pathToFile, 'utf8');
 
 	return fileData;
 }
@@ -34,31 +30,31 @@ async function updateExisting(updatedDetails: TeamDetails) {
 	fileDetailsJSON.data.splice(existingData, 1, updatedDetails); // eslint-disable-line
 
 	const space = 2;
-	const writeResponse = await writeFile(
+	const writeResponse = await fsPromises.writeFile(
 		pathToFile,
-		JSON.stringify(fileDetailsJSON, null, space)
+		JSON.stringify(fileDetailsJSON, null, space),
+		'utf-8'
 	);
-
-	console.log('writeResponse', writeResponse);
 
 	return writeResponse;
 }
 
 async function writeToFile(newDetails: TeamDetails) {
-	const fileDetails = await readDataFile();
-	const fileDetailsJSON = JSON.parse(fileDetails);
+	try {
+		const fileDetails = await readDataFile();
+		const fileDetailsJSON = JSON.parse(fileDetails);
 
-	fileDetailsJSON.data.push(newDetails);
+		fileDetailsJSON.data.push(newDetails);
 
-	const space = 2;
-	const writeResponse = await writeFile(
-		pathToFile,
-		JSON.stringify(fileDetailsJSON, null, space)
-	);
+		const space = 2;
 
-	console.log('writeResponse', writeResponse);
-
-	return writeResponse;
+		await fsPromises.writeFile(
+			pathToFile,
+			JSON.stringify(fileDetailsJSON, null, space)
+		);
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 export { readDataFile, writeToFile, updateExisting };

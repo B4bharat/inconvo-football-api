@@ -87,6 +87,14 @@
     {
       "name": "Cheltenham FC",
       "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/737.jpg"
+    },
+    {
+      "name": "Cheltenham FC & Dive",
+      "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/736.jpg"
+    },
+    {
+      "name": "Sajjan FC",
+      "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/737.jpg"
     }
   ]
 }
