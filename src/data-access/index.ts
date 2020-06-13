@@ -30,6 +30,8 @@ async function writeToFile(newDetails: any) {
 		JSON.stringify(fileDetailsJSON, null, space)
 	);
 
+	console.log('writeResponse', writeResponse);
+
 	return writeResponse;
 }
 
