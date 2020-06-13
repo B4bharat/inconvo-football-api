@@ -12,13 +12,39 @@ const writeFile = util.promisify(fs.writeFile);
 // TODO: File path name should be generic
 const pathToFile = path.join(__dirname, '../data/footballTeams.json');
 
+interface TeamDetails {
+	name: string;
+	img: string;
+}
+
 async function readDataFile() {
 	const fileData = await readFile(pathToFile, 'utf8');
 
 	return fileData;
 }
 
-async function writeToFile(newDetails: any) {
+async function updateExisting(updatedDetails: TeamDetails) {
+	const fileDetails = await readDataFile();
+	const fileDetailsJSON = JSON.parse(fileDetails);
+
+	const existingData = fileDetailsJSON.data.findIndex((data: TeamDetails) => {
+		return data.name === updatedDetails.name;
+	});
+
+	fileDetailsJSON.data.splice(existingData, 1, updatedDetails); // eslint-disable-line
+
+	const space = 2;
+	const writeResponse = await writeFile(
+		pathToFile,
+		JSON.stringify(fileDetailsJSON, null, space)
+	);
+
+	console.log('writeResponse', writeResponse);
+
+	return writeResponse;
+}
+
+async function writeToFile(newDetails: TeamDetails) {
 	const fileDetails = await readDataFile();
 	const fileDetailsJSON = JSON.parse(fileDetails);
 
@@ -35,4 +61,4 @@ async function writeToFile(newDetails: any) {
 	return writeResponse;
 }
 
-export { readDataFile, writeToFile };
+export { readDataFile, writeToFile, updateExisting };

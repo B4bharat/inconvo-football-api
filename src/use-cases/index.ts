@@ -1,7 +1,11 @@
 import makeCreateTeam from './create-team';
-import { readDataFile, writeToFile } from '../data-access';
+import { readDataFile, writeToFile, updateExisting } from '../data-access';
 
-const createTeam = makeCreateTeam({ readDataFile, writeToFile });
+const createTeam = makeCreateTeam({
+	readDataFile,
+	writeToFile,
+	updateExisting,
+});
 
 const teamService = Object.freeze({
 	createTeam,

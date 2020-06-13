@@ -2,7 +2,11 @@ import makeTeam from '../team';
 
 // TODO: DB Dependency to be built later, imgURLCheck
 // Here we will moderate the team details, if anything is invalid, it should go away from here itself
-export default function makeCreateTeam({ readDataFile, writeToFile }) {
+export default function makeCreateTeam({
+	readDataFile,
+	writeToFile,
+	updateExisting,
+}) {
 	/**
    * makeNewTeam factory function
       Dependency injection ( DB, ‘image url check’)
@@ -34,11 +38,6 @@ export default function makeCreateTeam({ readDataFile, writeToFile }) {
 		}
 
 		if (teamListJSON.data.find(teamExists)) {
-			/**
-			 * - If team already exists, grab the image.
-			 * - update the number in the image by one.
-			 * - write it back to the file
-			 */
 			const existingTeam = teamListJSON.data.find(teamExists);
 			const existingTeamImageName = existingTeam.img
 				.slice(existingTeam.img.lastIndexOf('/') + 1) // eslint-disable-line
@@ -49,9 +48,11 @@ export default function makeCreateTeam({ readDataFile, writeToFile }) {
 				existingTeam.img
 			);
 
-			console.log('updatedImageName', updatedImageName);
-
 			existingTeam.img = updatedImageName;
+
+			const updateResponse = await updateExisting(existingTeam);
+
+			console.log('updateResponse', updateResponse);
 		} else {
 			console.log('makeNewTeam usecase');
 			const newTeamDetails = makeTeam(teamDetails);
