@@ -1,5 +1,5 @@
 import makeCreateTeam from './create-team';
-import { readDataFile, writeToFile } from '../data-access';
+import { writeToFile } from '../data-access';
 
 const createTeam = makeCreateTeam({ writeToFile });
 

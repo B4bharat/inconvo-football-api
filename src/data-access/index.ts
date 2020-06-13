@@ -13,30 +13,26 @@ interface TeamDetails {
 	name: string;
 	img: string;
 }
+// TODO: File path name should be generic
+const pathToFile = path.join(__dirname, '../data/footballTeams.json');
 
 async function readDataFile() {
-	const joinedPath = path.join(__dirname, '../data/footballTeams.json');
-
-	console.log('joinedPath', joinedPath);
-	const fileData = await readFile(joinedPath, 'utf8');
-
-	console.log('fileData', fileData);
+	const fileData = await readFile(pathToFile, 'utf8');
 
 	return fileData;
 }
 
 // want a method which would take in the the object that needs to be written to
 async function writeToFile(teamDetails: TeamDetails) {
-	const footballTeams = await readDataFile();
+	const fileDetails = await readDataFile();
+	const fileDetailsJSON = JSON.parse(fileDetails);
 
-	console.log('footballTeams', JSON.parse(JSON.stringify(footballTeams)));
+	fileDetailsJSON.teams.push(teamDetails);
 
 	const space = 2;
-	const data = JSON.stringify(teamDetails, null, space);
-
 	const writeResponse = await writeFile(
-		path.join(path.dirname(''), './footballTeams.json'),
-		data
+		pathToFile,
+		JSON.stringify(fileDetailsJSON, null, space)
 	);
 
 	return writeResponse;
