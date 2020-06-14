@@ -12,21 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/teams', async (req, res) => {
-	const httpRequest = {
-		body: req.body,
-		query: req.query,
-		params: req.params,
-		ip: req.ip,
-		method: req.method,
-		path: req.path,
-		headers: {
-			'Content-Type': req.get('Content-Type'),
-			Referer: req.get('referer'),
-			'User-Agent': req.get('User-Agent'),
-		},
-	};
-
-	const newTeam = await addTeamDetails(httpRequest);
+	const newTeam = await addTeamDetails(req.body);
 
 	res.type('json');
 	res.send(newTeam);

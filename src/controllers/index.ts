@@ -5,7 +5,7 @@ import {
 	teamDetails,
 } from '../use-cases/team';
 
-import makeAddTeamDetails from './create-team';
+import makeAddTeamDetails from './add-team-details';
 import makeListAllTeams from './list-teams';
 import makeGetTeamDetails from './team-details';
 

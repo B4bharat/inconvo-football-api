@@ -2,12 +2,12 @@ import { readDataFile } from '../data-access';
 import { TeamDetails } from '../entities/team';
 
 export default function makeAddTeamDetails({ createTeam, updateTeam }) {
-	return async function addTeamDetails(httpRequest) {
+	return async function addTeamDetails(reqBody) {
 		try {
 			const teamList = await readDataFile();
 			const teamListJSON = JSON.parse(teamList);
 
-			const teamDetails = httpRequest.body;
+			const teamDetails = reqBody;
 
 			if (
 				teamListJSON.data.find(
