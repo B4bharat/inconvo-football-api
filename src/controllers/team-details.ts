@@ -1,8 +1,6 @@
 export default function makeGetTeamDetails({ teamDetails }) {
 	return async function getTeamDetails(name: string) {
 		try {
-			console.log('getTeamDetails controller');
-
 			const reqTeamDetails = await teamDetails(name);
 
 			return {

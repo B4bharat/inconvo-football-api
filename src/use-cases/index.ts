@@ -1,3 +1,5 @@
+// Use Cases describe all our valid interactions with the entity
+// All the features, just at a single glance
 import makeCreateTeam from './create-team';
 import makeListTeams from './list-teams';
 import makeTeamDetails from './team-details';

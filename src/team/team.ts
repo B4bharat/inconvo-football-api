@@ -6,9 +6,6 @@ export default function buildMakeTeam() {
 	}
 
 	return function makeTeam(teamDetails: TeamDetails) {
-		console.log('team entity');
-		console.log('teamDetails', teamDetails);
-
 		function isAlphabeticName(name: string) {
 			return /^[a-zA-Z\s&]+$/.test(name);
 		}

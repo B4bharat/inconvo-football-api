@@ -11,7 +11,6 @@ export default function makeCreateTeam({
 		name: string;
 		img: string;
 	}
-	console.log('makeCreateTeam');
 
 	return async function makeNewTeam(teamDetails: TeamDetails) {
 		const teamList = await readDataFile();
@@ -48,13 +47,13 @@ export default function makeCreateTeam({
 
 			return updateResponse;
 		} else {
-			console.log('makeNewTeam usecase');
 			const newTeamDetails = makeTeam(teamDetails);
 
-			console.log('newTeamDetails', newTeamDetails);
-
-			// TODO: Push 'newTeamDetails' to the json file
-			const fileWriteResponse = await writeToFile(teamDetails);
+			// This ensures that the teamDetails are only pushed after they are validated through business logic and not directly
+			const fileWriteResponse = await writeToFile({
+				name: newTeamDetails.getTeamName(),
+				img: newTeamDetails.getImage(),
+			});
 
 			return fileWriteResponse;
 		}

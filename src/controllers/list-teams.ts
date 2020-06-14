@@ -1,8 +1,6 @@
 export default function makeListAllTeams({ listTeams }) {
 	return async function listAllTeams() {
 		try {
-			console.log('listAllTeams controller');
-
 			const teams = await listTeams();
 
 			return {

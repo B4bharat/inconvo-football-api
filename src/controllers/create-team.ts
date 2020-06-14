@@ -1,7 +1,6 @@
 export default function makeCreateNewTeam({ createTeam }) {
 	return async function createNewTeam(httpRequest) {
 		try {
-			console.log('createNewTeam controller');
 			const teamDetails = httpRequest.body;
 
 			await createTeam(teamDetails);
