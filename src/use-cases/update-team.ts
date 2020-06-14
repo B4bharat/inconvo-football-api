@@ -1,3 +1,5 @@
+import makeTeam from '../team';
+
 export default function makeUpdateTeam({ readDataFile, updateExisting }) {
 	interface TeamDetails {
 		name: string;
@@ -34,7 +36,12 @@ export default function makeUpdateTeam({ readDataFile, updateExisting }) {
 
 		existingTeam.img = updatedImageName;
 
-		const updateResponse = await updateExisting(existingTeam);
+		const updatedImageDetails = makeTeam(existingTeam);
+
+		const updateResponse = await updateExisting({
+			name: updatedImageDetails.getTeamName(),
+			img: updatedImageDetails.getImage(),
+		});
 
 		return updateResponse;
 	};

@@ -8,8 +8,7 @@ export default function makeCreateTeam({ writeToFile }) {
 	}
 
 	return async function makeNewTeam(teamDetails: TeamDetails) {
-		console.log('you came in the create area');
-		// Add new team to the list
+		// ensures that the details comply by the business logic
 		const newTeamDetails = makeTeam(teamDetails);
 
 		// This ensures that the teamDetails are only pushed after they are validated
