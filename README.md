@@ -31,8 +31,8 @@ The project follows the following best practices and the users are expected to c
 Clone the repo and make it yours:
 
 ```bash
-git clone https://github.com/B4bharat/express-boilerplate
-cd express-boilerplate
+git clone https://github.com/B4bharat/inconvo-football-api
+cd inconvo-football-api
 rm -rf .git
 ```
 
@@ -68,36 +68,38 @@ yarn build
 ## Folder Structure
 
 ```bash
-+-- docker
++-- build (Production ready files)
 +-- src
-|   +-- app (contains the application business logic)
-|   |   +-- middlewares (expressjs middlewares)
-|   |   +-- users (user entity/component of the application)
-|   |   |   +-- user.controller.js (controller of the user entity)
-|   |   |   +-- user.model.js (MongoDB model of the user entity)
-|   |   |   +-- user.route.js (API routes of the user entity)
-|   |   |   +-- user.test.js (Unit Tests of the user entity)
-|   |   |   +-- user.validation.js (validations for the user entity)
-|   |   +-- utils (utitlity methods)
-|   +-- config (contains configurations for server, databases, environments etc)
-|   |   +-- express.js (configuration for the express server)
-|   |   +-- mongoose.js (mongoose configuration)
-|   |   +-- vars.js (environment specific variables)
-|   +-- index.js (main file, app initialisation)
-|   +-- .package-lock.json
-|   +-- .package.json
+|   +-- controllers (handles the http request response structure and routes to appropriate use-cases. should handle grpc as well)
+|   +-- data (contains the json data)
+|   +-- data-access (Data Access Layer, has the responsibility of file reading, writing. Should contain Database, cache initialisation and helper functions)
+|   +-- entities (The entities a project has e.g. post entity for a social media application)
+|   |   +-- team (Football Team entity, contains the business logic a football team data must abide by)
+|   +-- use-cases (Use Cases for the entity)
+|   |   +-- team (Contains the use cases for the 'team' entity)
+|   +-- utilities (All the utility methods)
+|   +-- index.ts (main file, app initialisation)
 +-- .editorconfig (configurations for the editors)
++-- .env
 +-- .env.example (sample dotenv file)
++-- .eslintignore
 +-- .eslintrc (eslint configuration)
-+-- .gitattributes
 +-- .gitignore
-+-- .prettierrc (prettier configuration)
-+-- build.sh
-+-- deploy.sh
++-- nodemon.json
++-- package.json
++-- package-lock.json
++-- tsconfig.json (Typescript configuration)
 +-- .README.MD
-+-- run.sh
-+-- sonar-project.properties
++-- .prettierrc (prettier configuration)
 ```
+
+## Clean Architecture
+
+- Explanation of 'Clean Architecture' in our context
+
+## API
+
+- Request, response of each api alongwith their description
 
 ## Lint
 

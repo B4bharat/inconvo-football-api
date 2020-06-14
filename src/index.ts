@@ -8,15 +8,15 @@ import { addTeamDetails, listAllTeams, fetchTeamDetails } from './controllers';
 dotenv.config();
 
 const PORT = process.env.PORT;
-
 const app = express();
 
 app.use(bodyParser.json());
 
+// Security Essentials
 app.use(cors());
-
 app.use(helmet());
 
+//Routing
 app.post('/teams', async (req, res) => {
 	const newTeam = await addTeamDetails(req.body);
 
@@ -39,7 +39,7 @@ app.get('/teams/:name', async (req, res) => {
 	res.send(reqTeamDetails);
 });
 
-// listen for requests
+// Server initiation
 app.listen(PORT, () => {
 	console.log('Server is listening on port 3000');
 });
