@@ -1,6 +1,6 @@
 import { readDataFile } from '../data-access';
 
-export default function makeAddTeamDetails({ createTeam }) {
+export default function makeAddTeamDetails({ createTeam, updateTeam }) {
 	interface TeamDetails {
 		name: string;
 		img: string;
@@ -19,6 +19,7 @@ export default function makeAddTeamDetails({ createTeam }) {
 				)
 			) {
 				// updateTeam
+				await updateTeam(teamDetails);
 			} else {
 				// createTeam
 				await createTeam(teamDetails);
