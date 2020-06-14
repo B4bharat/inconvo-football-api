@@ -13,8 +13,9 @@ export default function makeCreateTeam({
 	}
 
 	return async function makeNewTeam(teamDetails: TeamDetails) {
-		const teamList = await readDataFile();
-		const teamListJSON = JSON.parse(teamList);
+		let teamList = await readDataFile();
+
+		teamList = JSON.parse(teamList);
 
 		function teamExists(team: TeamDetails) {
 			return team.name === teamDetails.name;
@@ -30,8 +31,8 @@ export default function makeCreateTeam({
 			return updatedImgURL;
 		}
 
-		if (teamListJSON.data.find(teamExists)) {
-			const existingTeam = teamListJSON.data.find(teamExists);
+		if (teamList.data.find(teamExists)) {
+			const existingTeam = teamList.data.find(teamExists);
 			const existingTeamImageName = existingTeam.img
 				.slice(existingTeam.img.lastIndexOf('/') + 1) // eslint-disable-line
 				.split('.')[0]; // eslint-disable-line
@@ -49,7 +50,8 @@ export default function makeCreateTeam({
 		} else {
 			const newTeamDetails = makeTeam(teamDetails);
 
-			// This ensures that the teamDetails are only pushed after they are validated through business logic and not directly
+			// This ensures that the teamDetails are only pushed after they are validated
+			// through business logic and not directly
 			const fileWriteResponse = await writeToFile({
 				name: newTeamDetails.getTeamName(),
 				img: newTeamDetails.getImage(),
