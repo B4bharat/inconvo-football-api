@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import helmet from 'helmet';
 import { addTeamDetails, listAllTeams, fetchTeamDetails } from './controllers';
 
 dotenv.config();
@@ -13,6 +14,8 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(cors());
+
+app.use(helmet());
 
 app.post('/teams', async (req, res) => {
 	const newTeam = await addTeamDetails(req.body);
