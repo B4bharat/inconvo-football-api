@@ -1,4 +1,9 @@
-import { createTeam, updateTeam, listTeams, teamDetails } from '../use-cases/team';
+import {
+	createTeam,
+	updateTeam,
+	listTeams,
+	teamDetails,
+} from '../use-cases/team';
 
 import makeAddTeamDetails from './create-team';
 import makeListAllTeams from './list-teams';
