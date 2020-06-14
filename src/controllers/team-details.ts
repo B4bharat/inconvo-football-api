@@ -3,6 +3,10 @@ export default function makeGetTeamDetails({ teamDetails }) {
 		try {
 			const reqTeamDetails = await teamDetails(name);
 
+			if (!reqTeamDetails) {
+				throw new Error(`The Requested team - ${name} does not exists`);
+			}
+
 			return {
 				reqTeamDetails,
 			};
