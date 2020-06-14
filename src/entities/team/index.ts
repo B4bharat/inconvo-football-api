@@ -5,3 +5,10 @@ import buildMakeTeam from './team';
 const makeTeam = buildMakeTeam();
 
 export default makeTeam;
+
+interface TeamDetails {
+	name: string;
+	img: string;
+}
+
+export { TeamDetails };

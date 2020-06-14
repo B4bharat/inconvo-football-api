@@ -1,9 +1,6 @@
-export default function makeTeamDetails({ readDataFile }) {
-	interface TeamDetails {
-		name: string;
-		img: string;
-	}
+import { TeamDetails } from '../../entities/team';
 
+export default function makeTeamDetails({ readDataFile }) {
 	return async function teamDetails(teamName: string) {
 		let teamList = await readDataFile();
 

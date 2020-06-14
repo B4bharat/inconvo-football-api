@@ -5,13 +5,10 @@ import { promises as fsPromises } from 'fs';
 
 import path from 'path';
 
+import { TeamDetails } from '../entities/team';
+
 // TODO: File path name should be generic
 const pathToFile = path.join(__dirname, '../data/footballTeams.json');
-
-interface TeamDetails {
-	name: string;
-	img: string;
-}
 
 async function readDataFile() {
 	const fileData = await fsPromises.readFile(pathToFile, 'utf8');

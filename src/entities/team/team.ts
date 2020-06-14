@@ -1,10 +1,6 @@
-export default function buildMakeTeam() {
-	// TODO: Keep interfaces common somewhere
-	interface TeamDetails {
-		name: string;
-		img: string;
-	}
+import { TeamDetails } from './index';
 
+export default function buildMakeTeam() {
 	return function makeTeam(teamDetails: TeamDetails) {
 		function isAlphabeticName(name: string) {
 			return /^[a-zA-Z\s&]+$/.test(name);

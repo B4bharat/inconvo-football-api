@@ -1,11 +1,7 @@
 import { readDataFile } from '../data-access';
+import { TeamDetails } from '../entities/team';
 
 export default function makeAddTeamDetails({ createTeam, updateTeam }) {
-	interface TeamDetails {
-		name: string;
-		img: string;
-	}
-
 	return async function addTeamDetails(httpRequest) {
 		try {
 			const teamList = await readDataFile();

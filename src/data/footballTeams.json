@@ -139,6 +139,14 @@
     {
       "name": "DOMBIVLI FC",
       "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/736.jpg"
+    },
+    {
+      "name": "DADAR FC",
+      "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/735.jpg"
+    },
+    {
+      "name": "DADAR CITY FC",
+      "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/736.jpg"
     }
   ]
 }

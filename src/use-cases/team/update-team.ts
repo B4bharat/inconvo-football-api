@@ -1,11 +1,7 @@
 import makeTeam from '../../entities/team';
+import { TeamDetails } from '../../entities/team';
 
 export default function makeUpdateTeam({ readDataFile, updateExisting }) {
-	interface TeamDetails {
-		name: string;
-		img: string;
-	}
-
 	return async function updateTeam(teamDetails: TeamDetails) {
 		let teamList = await readDataFile();
 
