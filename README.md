@@ -24,7 +24,7 @@ The project follows the following best practices and the users are expected to c
 
 ## Requirements
 
-- [Node v7.6+](https://nodejs.org/en/download/current/) or [Docker](https://www.docker.com/)
+- [Node](https://nodejs.org/en/download/current/)
 
 ## Getting Started
 
@@ -36,13 +36,13 @@ cd express-boilerplate
 rm -rf .git
 ```
 
-## Set environment variables:
+## Set environment variables
 
 ```bash
 cp .env.example .env
 ```
 
-## Install dependencies:
+## Install dependencies
 
 Note: DO NOT use npm and yarn alternately, stick with one package manager only because both produce their own '.lock' files and may result in inconsistencies with dependencies
 
@@ -54,15 +54,15 @@ npm i or npm install
 ## Running Locally
 
 ```bash
-npm run dev
-yarn dev
+npm run start:dev
+yarn start:dev
 ```
 
 ## Running in Production
 
 ```bash
-npm start
-yarn start
+npm build
+yarn build
 ```
 
 ## Folder Structure
