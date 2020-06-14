@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { createNewTeam, listAllTeams } from './controllers';
+import { createNewTeam, listAllTeams, fetchTeamDetails } from './controllers';
 
 dotenv.config();
 
@@ -26,33 +26,25 @@ app.post('/teams', async (req, res) => {
 		},
 	};
 
-	const response = await createNewTeam(httpRequest);
+	const newTeam = await createNewTeam(httpRequest);
 
-	console.log('response', response);
 	res.type('json');
-	res.send(response);
+	res.send(newTeam);
 });
 
 app.get('/teams', async (req, res) => {
-	// const httpRequest = {
-	// 	body: req.body,
-	// 	query: req.query,
-	// 	params: req.params,
-	// 	ip: req.ip,
-	// 	method: req.method,
-	// 	path: req.path,
-	// 	headers: {
-	// 		'Content-Type': req.get('Content-Type'),
-	// 		Referer: req.get('referer'),
-	// 		'User-Agent': req.get('User-Agent'),
-	// 	},
-	// };
+	const teamList = await listAllTeams();
 
-	const response = await listAllTeams();
-
-	console.log('response', response);
 	res.type('json');
-	res.send(response);
+	res.send(teamList);
+});
+
+app.get('/teams/:name', async (req, res) => {
+	const { name } = req.params;
+	const reqTeamDetails = await fetchTeamDetails(name);
+
+	res.type('json');
+	res.send(reqTeamDetails);
 });
 
 // listen for requests
