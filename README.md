@@ -95,7 +95,23 @@ yarn build
 
 ## Clean Architecture
 
-- Explanation of 'Clean Architecture' in our context
+- 'Clean Architecture' helps you achieve separation of concerns by dividing the software into layers. There is at least one layer for business rules and another for interfaces.
+- The underlying principle is that the architecture should be:
+  - Independent of Frameworks.
+  - Testable.
+  - Independent of UI.
+  - Independent of Database.
+  - Independent of any external agency.
+- The roles in the architecture as named as follows:
+  - Entities:
+    - Entities encapsulate Enterprise wide business rules. An entity can be an object with methods, or it can be a set of data structures and functions. It doesn’t matter so long as the entities could be used by many different applications in the enterprise.
+    - In our application, 'Team' is an entity and all the business rules associated with it are written inside 'entities/team'. Dependency injection helps add interfaces to it. The dependencies are independent of the entity and can be added, modified according to the requirement, thus making the 'Team' entity individually testable.
+  - Use Cases:
+    - The software in this layer contains application specific business rules. It encapsulates and implements all of the use cases of the system.
+    - In our application, 'Create team', 'List Teams', 'Team Details', 'Update Team' are the use cases.
+  - Interface Adapters:
+    - The software in this layer is a set of adapters that convert data from the format most convenient for the use cases and entities, to the format most convenient for some external agency such as the Database or the Web.
+    - 'data-access' contains the 'filesystem' logic needed to read, modify files.
 
 ## API
 
@@ -123,50 +139,11 @@ npm run formatting:fix
 yarn formatting:fix
 ```
 
-## Test
-
-```bash
-# run all tests with Mocha
-npm run test
-yarn test
-
-# run unit tests
-npm run test:unit
-yarn test:unit
-
-# run integration tests
-npm run test:integration
-yarn test:integration
-
-# run all tests and watch for changes
-npm run test:watch
-yarn test:watch
-
-# open nyc test coverage reports
-npm run coverage
-yarn coverage
-```
-
 ## Validate
 
 ```bash
 # run lint and tests
 yarn validate
-```
-
-## Logs
-
-```bash
-# show logs in production
-pm2 logs
-```
-
-## Documentation
-
-```bash
-# generate and open api documentation
-npm run docs
-yarn docs
 ```
 
 ## License
