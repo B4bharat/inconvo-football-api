@@ -15,15 +15,17 @@ export default function makeAddTeamDetails({ createTeam, updateTeam }) {
 				)
 			) {
 				// updateTeam
-				await updateTeam(teamDetails);
+				const updatedTeamDetails = await updateTeam(teamDetails);
+
+				return updatedTeamDetails;
 			} else {
 				// createTeam
 				await createTeam(teamDetails);
-			}
 
-			return {
-				teamDetails,
-			};
+				return {
+					teamDetails,
+				};
+			}
 		} catch (e) {
 			// TODO: Error logging
 			console.log(e);

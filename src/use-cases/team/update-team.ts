@@ -34,11 +34,14 @@ export default function makeUpdateTeam({ readDataFile, updateExisting }) {
 
 		const updatedImageDetails = makeTeam(existingTeam);
 
-		const updateResponse = await updateExisting({
+		await updateExisting({
 			name: updatedImageDetails.getTeamName(),
 			img: updatedImageDetails.getImage(),
 		});
 
-		return updateResponse;
+		return {
+			name: updatedImageDetails.getTeamName(),
+			img: updatedImageDetails.getImage(),
+		};
 	};
 }
