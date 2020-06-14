@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import { addTeamDetails, listAllTeams, fetchTeamDetails } from './controllers';
 
 dotenv.config();
@@ -10,6 +11,8 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.post('/teams', async (req, res) => {
 	const newTeam = await addTeamDetails(req.body);
