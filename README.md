@@ -113,9 +113,102 @@ yarn build
     - The software in this layer is a set of adapters that convert data from the format most convenient for the use cases and entities, to the format most convenient for some external agency such as the Database or the Web.
     - 'data-access' contains the 'filesystem' logic needed to read, modify files.
 
-## API
+## APIs
 
-- Request, response of each api alongwith their description
+- CREATE NEW TEAM
+
+  - Request URL:
+    ```bash
+      http://localhost:3000/teams
+    ```
+  - Request Method: POST
+  - Request Payload:
+    ```bash
+      {
+        "name": "YOUR LOCAL TEAM FC",
+        "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/735.jpg"
+      }
+    ```
+  - Response:
+    ```bash
+    {
+      "teamDetails": {
+        "name": "YOUR LOCAL TEAM FC",
+        "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/735.jpg"
+        }
+    }
+    ```
+
+- LIST TEAMS
+
+  - Request URL:
+    ```bash
+      http://localhost:3000/teams
+    ```
+  - Request Method: GET
+  - Response:
+
+    ```bash
+    {
+      "teams": {
+          "data": [
+              {
+                  "name": "Arsenal",
+                  "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/632.jpg"
+              },
+              {
+                  "name": "Bournemouth",
+                  "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/631.jpg"
+              },
+          ]
+      }
+    }
+    ```
+
+  - GET TEAM DETAILS
+
+    - Request URL:
+      ```bash
+        http://localhost:3000/teams/Arsenal
+      ```
+    - Request Method: GET
+    - Response:
+      ```bash
+      {
+        "reqTeamDetails": {
+            "name": "Arsenal",
+            "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/632.jpg"
+        }
+      }
+      ```
+      ```bash
+      {
+        "error": "The Requested team - Arsenala does not exists"
+      }
+      ```
+
+  - UPDATE TEAM (If a Team name already exists, it updates the image name by one e.g. 735.jpg becomes 736.jpg)
+    - Request URL:
+    ```bash
+      http://localhost:3000/teams
+    ```
+    - Request Method: POST
+    - Request Payload:
+      ```bash
+        {
+          "name": "YOUR LOCAL TEAM FC",
+          "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/735.jpg"
+        }
+      ```
+    - Response:
+      ```bash
+      {
+        "teamDetails": {
+          "name": "YOUR LOCAL TEAM FC",
+          "img": "https://s3-eu-west-1.amazonaws.com/inconbucket/images/entities/original/736.jpg"
+          }
+      }
+      ```
 
 ## Lint
 
@@ -127,23 +220,8 @@ npm run lint
 yarn lint
 
 # try to fix ESLint errors
-npm run lint:fix
-yarn lint:fix
-
-# lint and watch for changes
-npm run lint:watch
-yarn lint:watch
-
-# fix formatting issues through prettier
-npm run formatting:fix
-yarn formatting:fix
-```
-
-## Validate
-
-```bash
-# run lint and tests
-yarn validate
+npm run lint-and-fix
+yarn lint-and-fix
 ```
 
 ## License
