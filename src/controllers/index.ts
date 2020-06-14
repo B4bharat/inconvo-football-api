@@ -1,19 +1,19 @@
 import { createTeam, listTeams, teamDetails } from '../use-cases';
 
-import makeCreateTeam from './create-team';
+import makeAddTeamDetails from './create-team';
 import makeListAllTeams from './list-teams';
 import makeGetTeamDetails from './team-details';
 
-const createNewTeam = makeCreateTeam({ createTeam });
+const addTeamDetails = makeAddTeamDetails({ createTeam });
 const listAllTeams = makeListAllTeams({ listTeams });
 const fetchTeamDetails = makeGetTeamDetails({ teamDetails });
 
 const teamController = Object.freeze({
-	createNewTeam,
+	addTeamDetails,
 	listAllTeams,
 	fetchTeamDetails,
 });
 
 export default teamController;
 
-export { createNewTeam, listAllTeams, fetchTeamDetails };
+export { addTeamDetails, listAllTeams, fetchTeamDetails };

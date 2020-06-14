@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { createNewTeam, listAllTeams, fetchTeamDetails } from './controllers';
+import { addTeamDetails, listAllTeams, fetchTeamDetails } from './controllers';
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ app.post('/teams', async (req, res) => {
 		},
 	};
 
-	const newTeam = await createNewTeam(httpRequest);
+	const newTeam = await addTeamDetails(httpRequest);
 
 	res.type('json');
 	res.send(newTeam);

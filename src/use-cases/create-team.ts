@@ -1,6 +1,5 @@
 import makeTeam from '../team';
 
-// TODO: DB Dependency to be built later, imgURLCheck
 // Here we will moderate the team details, if anything is invalid, it should go away from here itself
 export default function makeCreateTeam({
 	readDataFile,
@@ -32,6 +31,7 @@ export default function makeCreateTeam({
 		}
 
 		if (teamList.data.find(teamExists)) {
+			// Update team Details [image]
 			const existingTeam = teamList.data.find(teamExists);
 			const existingTeamImageName = existingTeam.img
 				.slice(existingTeam.img.lastIndexOf('/') + 1) // eslint-disable-line
@@ -48,6 +48,7 @@ export default function makeCreateTeam({
 
 			return updateResponse;
 		} else {
+			// Add new team to the list
 			const newTeamDetails = makeTeam(teamDetails);
 
 			// This ensures that the teamDetails are only pushed after they are validated
