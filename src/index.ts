@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { createNewTeam } from './controllers';
+import { createNewTeam, listAllTeams } from './controllers';
 
 dotenv.config();
 
@@ -27,6 +27,28 @@ app.post('/teams', async (req, res) => {
 	};
 
 	const response = await createNewTeam(httpRequest);
+
+	console.log('response', response);
+	res.type('json');
+	res.send(response);
+});
+
+app.get('/teams', async (req, res) => {
+	// const httpRequest = {
+	// 	body: req.body,
+	// 	query: req.query,
+	// 	params: req.params,
+	// 	ip: req.ip,
+	// 	method: req.method,
+	// 	path: req.path,
+	// 	headers: {
+	// 		'Content-Type': req.get('Content-Type'),
+	// 		Referer: req.get('referer'),
+	// 		'User-Agent': req.get('User-Agent'),
+	// 	},
+	// };
+
+	const response = await listAllTeams();
 
 	console.log('response', response);
 	res.type('json');
