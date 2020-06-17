@@ -42,6 +42,13 @@ rm -rf .git
 cp .env.example .env
 ```
 
+For our specific project, add the following values inside .env
+```
+  NODE_ENV=development
+  PORT=3000
+  API_ROOT=http://localhost
+```
+
 ## Install dependencies
 
 Note: DO NOT use npm and yarn alternately, stick with one package manager only because both produce their own '.lock' files and may result in inconsistencies with dependencies
@@ -139,6 +146,8 @@ yarn build
     }
     ```
 
+Check the file src/data/footballTeams.json, a new team should've been added to the array in json
+
 - LIST TEAMS
 
   - Request URL:
@@ -209,6 +218,7 @@ yarn build
           }
       }
       ```
+Check the file src/data/footballTeams.json, the specified team details should've been updated
 
 ## Lint
 
